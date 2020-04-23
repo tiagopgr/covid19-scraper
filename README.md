@@ -8,3 +8,4 @@ Scraper de dados do covid-19 do site https://covid.saude.gov.br/ com informaçõ
 $npm install
 $node scraper.js
 ```
+#### A descrição encontra-se incompleta qualquer 

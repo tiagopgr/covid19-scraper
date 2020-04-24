@@ -64,7 +64,7 @@ console.log("Scraping started...");
         if (search.length === 0) {
             const created = await Information.create(data);
             message = "Registered information";
-            console.table(created);
+            console.table(created._doc);
         }
 
         console.warn(message);

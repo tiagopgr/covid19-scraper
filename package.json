@@ -1,14 +1,20 @@
 {
-  "name": "scrapper",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "dependencies": {
-    "puppeteer": "^3.0.1",
-    "sequelize": "^5.21.7",
-    "sqlite3": "^4.1.1"
-  },
-  "devDependencies": {
-    "sequelize-cli": "^5.5.1"
-  }
+    "name": "scrapper",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+        "exec": "node scraper.js"
+    },
+    "dependencies": {
+        "dotenv": "^8.2.0",
+        "mongoose": "^5.9.10",
+        "puppeteer": "^3.0.1",
+        "require-dir": "^1.2.0",
+        "sequelize": "^5.21.7",
+        "sqlite3": "^4.1.1"
+    },
+    "devDependencies": {
+        "sequelize-cli": "^5.5.1"
+    }
 }

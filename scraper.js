@@ -3,7 +3,6 @@ const requireDir = require('require-dir');
 const puppeteer = require('puppeteer');
 const mongoose = require('mongoose');
 
-//Connect database
 const mongoOptions = {
     keepAlive: 1,
     useUnifiedTopology: true,
@@ -11,26 +10,24 @@ const mongoOptions = {
 };
 mongoose.connect(process.env.MONGO_DATASOURCE, mongoOptions);
 
-//Require all models in folder models
 require('./models/Information');
 
-//Define a Information model
 const Information = mongoose.model('Information');
-
-// Url target from scapping
 const target_url = process.env.SERVICE_URL_TARGET;
-
-//create data object from save informations
 let data = [];
 
-//Generate ramdom value with params min and max
+/**
+ * @author: Tiago Andrade
+ * @param min
+ * @param max
+ * @returns
+ */
 randomSeconds = (min, max) => {
     min = Math.ceil(min);
     max = Math.floor(max);
     return (Math.floor(Math.random() * (max - min)) + min) * 1000;
 }
 
-//Time from wait load page, random value between min and max seconds
 const timeWait = randomSeconds(5, 15);
 
 const elConfirmadosBrasil = 'body > app-root > ion-app > ion-router-outlet > app-home > ion-content > painel-geral-component > div > card-totalizadores-component > div.container-cards.ct-totalizadores.ct-geral > div:nth-child(1) > div > div.lb-total';
@@ -55,8 +52,6 @@ console.log("Scraping started...");
         const obitosce = parseFloat((await page.$eval(elObitosCeara, divs => divs.innerText)).replace(/\./, ""));
 
         data = { confirmadosbr, obitosbr, confirmadosce, obitosce };
-
-        //Close browser on end scraping
         await browser.close();
 
         const search = await Information.find(data);

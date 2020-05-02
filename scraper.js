@@ -28,12 +28,12 @@ randomSeconds = (min, max) => {
     return (Math.floor(Math.random() * (max - min)) + min) * 1000;
 }
 
-const timeWait = randomSeconds(5, 15);
-
+const timeWait = randomSeconds(20, 60);
+// /html/body/app-root/ion-app/ion-router-outlet/app-home/ion-content/painel-geral-component/div/card-totalizadores-component/div[1]/div[1]/div/div[1]
 const elConfirmadosBrasil = 'body > app-root > ion-app > ion-router-outlet > app-home > ion-content > painel-geral-component > div > card-totalizadores-component > div.container-cards.ct-totalizadores.ct-geral > div:nth-child(1) > div > div.lb-total';
 const elObitosBrasil = 'body > app-root > ion-app > ion-router-outlet > app-home > ion-content > painel-geral-component > div > card-totalizadores-component > div.container-cards.ct-totalizadores.ct-geral > div:nth-child(2) > div > div.lb-total';
-const elConfirmadosCeara = 'body > app-root > ion-app > ion-router-outlet > app-home > ion-content > painel-geral-component > div > div.container-cards.line-3.display-flex.justify-around > div.card-total.no-padding.width-50.height-768px > lista-itens-component > div.list-itens.ct-itens-geral > div:nth-child(6) > div.teste > div:nth-child(1) > b';
-const elObitosCeara = 'body > app-root > ion-app > ion-router-outlet > app-home > ion-content > painel-geral-component > div > div.container-cards.line-3.display-flex.justify-around > div.card-total.no-padding.width-50.height-768px > lista-itens-component > div.list-itens.ct-itens-geral > div:nth-child(6) > div.teste > div:nth-child(2) > b';
+const elConfirmadosCeara = 'body > app-root > ion-app > ion-router-outlet > app-home > ion-content > painel-geral-component > div > div.container-cards.line-3.display-flex.justify-around > div.card-total.card-bg-light.width-50 > div.card-total.container-list.no-padding.height-792px > lista-itens-component > div.list-itens.ct-itens-geral > div:nth-child(6) > div.teste > div:nth-child(1) > b';
+const elObitosCeara = 'body > app-root > ion-app > ion-router-outlet > app-home > ion-content > painel-geral-component > div > div.container-cards.line-3.display-flex.justify-around > div.card-total.card-bg-light.width-50 > div.card-total.container-list.no-padding.height-792px > lista-itens-component > div.list-itens.ct-itens-geral > div:nth-child(6) > div.teste > div:nth-child(2) > b';
 
 console.clear();
 console.log("Scraping started...");
@@ -44,6 +44,7 @@ console.log("Scraping started...");
     try {
 
         await page.goto(target_url);
+        console.log(`Wait for ${timeWait / 1000} seconds`);
         await page.waitFor(timeWait);
 
         const confirmadosbr = parseFloat((await page.$eval(elConfirmadosBrasil, divs => divs.innerText)).replace(/\./, ""));
